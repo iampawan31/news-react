@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="flex mt-2">
+        <div className="flex text-xl font-semibold uppercase px-4 py-2">
+          News App
+        </div>
+        <ul className="flex">
+          <li className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded">Home</li>
+          <li className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded">
+            Business
+          </li>
+          <li className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded">
+            Entertainment
+          </li>
+          <li className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded">
+            General
+          </li>
+          <li className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded">
+            Health
+          </li>
+          <li className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded">
+            Science
+          </li>
+          <li className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded">
+            Sports
+          </li>
+          <li className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded">
+            Technology
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
