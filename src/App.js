@@ -1,39 +1,68 @@
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
+import Category from "./components/Category";
 
-function App() {
+const App = () => {
+  const links = [
+    {
+      name: "Business",
+      url: "/category/business",
+    },
+    {
+      name: "Entertainment",
+      url: "/category/entertainment",
+    },
+    {
+      name: "General",
+      url: "/category/general",
+    },
+    {
+      name: "Health",
+      url: "/category/health",
+    },
+    {
+      name: "Science",
+      url: "/category/science",
+    },
+    {
+      name: "Sports",
+      url: "/category/sports",
+    },
+    {
+      name: "Technology",
+      url: "/category/technology",
+    },
+  ];
   return (
-    <div className="App">
-      <div className="flex mt-2">
-        <div className="flex text-xl font-semibold uppercase px-4 py-2">
-          News App
-        </div>
-        <ul className="flex">
-          <li className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded">Home</li>
-          <li className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded">
-            Business
-          </li>
-          <li className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded">
-            Entertainment
-          </li>
-          <li className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded">
-            General
-          </li>
-          <li className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded">
-            Health
-          </li>
-          <li className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded">
-            Science
-          </li>
-          <li className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded">
-            Sports
-          </li>
-          <li className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded">
-            Technology
-          </li>
-        </ul>
+    <Router>
+      <div className="App">
+        <nav className="flex justify-between bg-white shadow-sm py-2">
+          <Link
+            to="/"
+            className="flex text-xl font-semibold uppercase px-4 py-2"
+          >
+            News App
+          </Link>
+          <div className="flex">
+            {links.map((link) => (
+              <Link
+                to={link.url}
+                className="px-4 py-2 mx-2 uppercase bg-gray-300 rounded"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+        </nav>
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/category/:category" children={<Category />} />
+        </Switch>
       </div>
-    </div>
+    </Router>
   );
-}
+};
 
 export default App;
