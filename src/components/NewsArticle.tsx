@@ -23,7 +23,12 @@ const NewsArticle = ({ news }: NewsArticleProps) => {
         />
       </div>
       <div className="w-2/3">
-        <a href={news.url} target="_blank" className="text-2xl mb-4">
+        <a
+          href={news.url}
+          target="_blank"
+          rel="noreferrer"
+          className="text-2xl mb-4"
+        >
           {news.title.replace(`- ${news.source.name}`, '')}
         </a>
         <div className="text-secondary text-sm mb-4">{news.description}</div>
