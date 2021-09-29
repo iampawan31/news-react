@@ -1,10 +1,7 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useState } from 'react'
 
 const Header = () => {
-  const [currentTime, setCurrentTime] = useState(new Date().getTime())
-
   return (
     <div className="bg-white rounded-xl shadow-sm px-2 py-4 w-full">
       <div className="flex justify-between">

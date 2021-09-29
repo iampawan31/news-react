@@ -8,7 +8,6 @@ import TopHeadlines from './components/TopHeadlines'
 import axios from 'axios'
 
 const GEO_URL = `https://api.ipregistry.co/?key=${process.env.REACT_APP_GEO_API_KEY}`
-const NEWS_URL = `https://newsapi.org/v2/top-headlines?q=Apple&from=2021-09-29&sortBy=popularity&apiKey=API_KEY`
 
 const App = () => {
   const [currentCountryCode, setCurrentCountryCode] = useState('in')

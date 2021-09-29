@@ -16,6 +16,7 @@ const TopHeadlines = ({ currentCountry }: currentCountryType) => {
       setTopHeadlines(data.articles)
     }
   }
+
   useEffect(() => {
     getTopHeadlines()
   }, [currentCountry])
