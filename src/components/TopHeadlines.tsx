@@ -19,7 +19,7 @@ const TopHeadlines = ({ currentCountry }: currentCountryType) => {
 
   useEffect(() => {
     getTopHeadlines()
-  }, [currentCountry, topHeadlines])
+  }, [])
 
   return (
     <div>
