@@ -22,12 +22,14 @@ const CustomLink: FC<CustomLinkProps & LinkProps> = ({
   return (
     <Link
       to={to}
-      className={`px-2 flex content-center items-center py-2 mx-2 hover:bg-alternate ${
-        match ? 'bg-primary text-white' : 'bg-white'
+      className={`px-2 flex content-center items-center py-2 mx-2 group hover:bg-alternate ${
+        match ? 'bg-primary text-white hover:text-primary' : 'bg-white'
       }`}
     >
       <span
-        className={`px-2 py-1 rounded ${match ? 'bg-primary' : 'bg-alternate'}`}
+        className={`px-2 py-1 rounded ${
+          match ? 'bg-primary group-hover:text-white' : 'bg-alternate'
+        }`}
       >
         <FontAwesomeIcon icon={link.icon as IconName} />
       </span>

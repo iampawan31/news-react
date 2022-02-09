@@ -1,14 +1,16 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Category from './components/Category'
+import Topic from './components/Topic'
 import Header from './components/Header'
 import TopHeadlines from './components/TopHeadlines'
+import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar'
 
 const GEO_URL = `https://api.ipregistry.co/?key=${process.env.REACT_APP_GEO_API_KEY}`
 
 const App = () => {
   const [currentCountryCode, setCurrentCountryCode] = useState('in')
+  const loaderRef = useRef<LoadingBarRef>(null)
   const [currentTime, setCurrentTime] = useState<string>('')
 
   const getCurrentCountryCode = async () => {
@@ -27,19 +29,45 @@ const App = () => {
     getCurrentCountryCode()
   }, [])
 
+  const startLoader = () => {
+    if (loaderRef) {
+      loaderRef?.current?.continuousStart(0, 10000)
+    }
+  }
+
+  const completeLoader = () => {
+    if (loaderRef) {
+      loaderRef?.current?.complete()
+    }
+  }
+
   return (
     <div className="bg-alternate h-full text-primary">
-      <Header currentTime={currentTime} />
-      <div className="container mx-auto py-40">
+      <LoadingBar color="#1b74e4" height={5} shadow ref={loaderRef} />
+      <Header />
+      <div className="container mx-auto py-20 sm:py-40">
         <div className="flex space-x-6">
           <Routes>
             <Route
-              path="/category/:category"
-              element={<Category currentCountry={currentCountryCode} />}
+              path="/topic/:topic"
+              element={
+                <Topic
+                  currentTime={currentTime}
+                  startLoader={startLoader}
+                  completeLoader={completeLoader}
+                />
+              }
             />
             <Route
               path="/"
-              element={<TopHeadlines currentCountry={currentCountryCode} />}
+              element={
+                <TopHeadlines
+                  currentTime={currentTime}
+                  currentCountry={currentCountryCode}
+                  startLoader={startLoader}
+                  completeLoader={completeLoader}
+                />
+              }
             />
           </Routes>
         </div>

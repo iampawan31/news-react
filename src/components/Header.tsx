@@ -1,4 +1,4 @@
-import { IconName, library } from '@fortawesome/fontawesome-svg-core'
+import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faBuilding,
   faDumbbell,
@@ -12,6 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC, ReactElement } from 'react'
+import { Link } from 'react-router-dom'
 import { useMatch, useLocation, useResolvedPath } from 'react-router-dom'
 import { LINKS } from '../data/links'
 import CustomLink from './CustomLink'
@@ -27,11 +28,7 @@ library.add(
   faShieldVirus
 )
 
-type HeaderProps = {
-  currentTime: string
-}
-
-const Header: FC<HeaderProps> = ({ currentTime }): ReactElement => {
+const Header: FC = (): ReactElement => {
   let location = useLocation()
   let resolved = useResolvedPath(location.pathname)
   let match = useMatch({ path: resolved.pathname, end: true })
@@ -39,28 +36,28 @@ const Header: FC<HeaderProps> = ({ currentTime }): ReactElement => {
   console.log(match ? true : false, 37)
 
   return (
-    <div className="bg-white fixed shadow-sm  pt-6 w-full">
+    <div className="bg-white fixed shadow-sm py-2 px-2 sm:px-0 sm:pt-6 sm:pb-0 w-full">
       <div className="container mx-auto">
         <div className="flex justify-between">
-          <div className="text-3xl bg-primary text-white px-2 rounded shadow">
+          <Link
+            to="/"
+            className="text-lg sm:text-3xl bg-primary text-white px-2 rounded shadow"
+          >
             News App
-          </div>
-          <div className="text-xl">
-            <span className="font-bold text-3xl">Good morning</span>,{' '}
-            {`its
-          ${currentTime}`}
-          </div>
-          <div>
+          </Link>
+
+          <div className="hidden sm:block">
             <input
               type="text"
-              className="bg-alternate text-primary rounded-l-xl focus:outline-none p-2"
+              placeholder="Search..."
+              className="bg-alternate text-primary rounded-l focus:outline-none p-2"
             />
-            <button className="bg-primary text-white rounded-r-xl py-2 px-4">
+            <button className="bg-primary text-white rounded-r py-2 px-4">
               <FontAwesomeIcon icon={faSearch} />
             </button>
           </div>
         </div>
-        <div className="flex justify-between flex-row pt-6">
+        <div className="justify-between flex-row pt-6 hidden sm:flex">
           {LINKS.map((link, index) => (
             <CustomLink
               to={link.url}

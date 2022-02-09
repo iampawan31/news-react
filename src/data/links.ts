@@ -9,38 +9,38 @@ export const LINKS: {
     icon: 'shield-virus',
   },
   {
-    name: 'Business',
-    url: '/category/business',
+    name: 'Economics',
+    url: '/topic/economics',
     icon: 'building',
   },
   {
     name: 'Entertainment',
-    url: '/category/entertainment',
+    url: '/topic/entertainment',
     icon: 'play',
   },
   {
-    name: 'General',
-    url: '/category/general',
+    name: 'World',
+    url: '/topic/world',
     icon: 'newspaper',
   },
   {
-    name: 'Health',
-    url: '/category/health',
+    name: 'Beauty',
+    url: '/topic/beauty',
     icon: 'dumbbell',
   },
   {
     name: 'Science',
-    url: '/category/science',
+    url: '/topic/science',
     icon: 'microscope',
   },
   {
     name: 'Sports',
-    url: '/category/sports',
+    url: '/topic/sports',
     icon: 'football-ball',
   },
   {
     name: 'Technology',
-    url: '/category/technology',
+    url: '/topic/technology',
     icon: 'microchip',
   },
 ]
