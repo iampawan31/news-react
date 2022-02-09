@@ -12,7 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC, ReactElement } from 'react'
-import { Link, useMatch, useLocation, useResolvedPath } from 'react-router-dom'
+import { useMatch, useLocation, useResolvedPath } from 'react-router-dom'
 import { LINKS } from '../data/links'
 import CustomLink from './CustomLink'
 

@@ -1,8 +1,10 @@
 import axios from 'axios'
 
+axios.defaults.headers.common['x-api-key'] = process.env.REACT_APP_NEWS_API_KEY
+
 export const fetchTopHeadlines = async (currentCountry) => {
   const { data } = await axios.get(
-    `https://newsapi.org/v2/top-headlines?country=${currentCountry}&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
+    `https://api.newscatcherapi.com/v2/latest_headlines?countries=${currentCountry}`
   )
   console.log(data, 7)
   return data.articles
@@ -10,7 +12,7 @@ export const fetchTopHeadlines = async (currentCountry) => {
 
 export const fetchByCategory = async (category) => {
   const { data } = await axios.get(
-    `https://newsapi.org/v2/top-headlines?category=${category}&language=en&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
+    `https://api.newscatcherapi.com/v2/search?category=${category}&language=en`
   )
   console.log(data, 7)
   return data.articles
