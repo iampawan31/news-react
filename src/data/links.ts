@@ -4,6 +4,11 @@ export const LINKS: {
   icon: string
 }[] = [
   {
+    name: 'Top Headlines',
+    url: '/',
+    icon: 'shield-virus',
+  },
+  {
     name: 'Business',
     url: '/category/business',
     icon: 'building',
