@@ -6,7 +6,6 @@ export const fetchTopHeadlines = async (currentCountry: string) => {
   const { data } = await axios.get(
     `https://api.newscatcherapi.com/v2/latest_headlines?countries=${currentCountry}`
   )
-  console.log(data, 7)
   return data.articles
 }
 
@@ -14,6 +13,12 @@ export const fetchByTopic = async (topic: string | undefined) => {
   const { data } = await axios.get(
     `https://api.newscatcherapi.com/v2/latest_headlines?topic=${topic}&lang=en`
   )
-  console.log(data, 7)
+  return data.articles
+}
+
+export const fetchBySearchTerm = async (searchTerm: string | null) => {
+  const { data } = await axios.get(
+    `https://api.newscatcherapi.com/v2/search?q=${searchTerm}&lang=en`
+  )
   return data.articles
 }

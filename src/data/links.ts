@@ -35,7 +35,7 @@ export const LINKS: {
   },
   {
     name: 'Sports',
-    url: '/topic/sports',
+    url: '/topic/sport',
     icon: 'football-ball',
   },
   {

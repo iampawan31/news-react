@@ -5,6 +5,7 @@ import Topic from './components/Topic'
 import Header from './components/Header'
 import TopHeadlines from './components/TopHeadlines'
 import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar'
+import SearchResults from './components/SearchResults'
 
 const GEO_URL = `https://api.ipregistry.co/?key=${process.env.REACT_APP_GEO_API_KEY}`
 
@@ -31,7 +32,7 @@ const App = () => {
 
   const startLoader = () => {
     if (loaderRef) {
-      loaderRef?.current?.continuousStart(0, 10000)
+      loaderRef?.current?.continuousStart(0, 500)
     }
   }
 
@@ -64,6 +65,16 @@ const App = () => {
                 <TopHeadlines
                   currentTime={currentTime}
                   currentCountry={currentCountryCode}
+                  startLoader={startLoader}
+                  completeLoader={completeLoader}
+                />
+              }
+            />
+            <Route
+              path="/search"
+              element={
+                <SearchResults
+                  currentTime={currentTime}
                   startLoader={startLoader}
                   completeLoader={completeLoader}
                 />

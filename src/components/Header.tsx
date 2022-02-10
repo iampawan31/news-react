@@ -11,9 +11,9 @@ import {
   faShieldVirus,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FC, ReactElement } from 'react'
-import { Link } from 'react-router-dom'
-import { useMatch, useLocation, useResolvedPath } from 'react-router-dom'
+import { FC, ReactElement, useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { LINKS } from '../data/links'
 import CustomLink from './CustomLink'
 
@@ -25,15 +25,27 @@ library.add(
   faMicrochip,
   faMicroscope,
   faFootballBall,
-  faShieldVirus
+  faShieldVirus,
+  faSearch
 )
 
 const Header: FC = (): ReactElement => {
-  let location = useLocation()
-  let resolved = useResolvedPath(location.pathname)
-  let match = useMatch({ path: resolved.pathname, end: true })
+  const [searchTerm, setSearchTerm] = useState<string>('')
 
-  console.log(match ? true : false, 37)
+  let navigate = useNavigate()
+  let location = useLocation()
+  let params = new URLSearchParams(location.search)
+  const queryTerm = params.get('q')
+
+  useEffect(() => {
+    if (queryTerm) {
+      setSearchTerm(queryTerm)
+    }
+  }, [queryTerm])
+
+  const submitSearch = () => {
+    navigate(`/search?q=${searchTerm}`)
+  }
 
   return (
     <div className="bg-white fixed shadow-sm py-2 px-2 sm:px-0 sm:pt-6 sm:pb-0 w-full">
@@ -49,10 +61,18 @@ const Header: FC = (): ReactElement => {
           <div className="hidden sm:block">
             <input
               type="text"
+              value={searchTerm}
+              onKeyDown={(e) => {
+                if (e.code === 'Enter') submitSearch()
+              }}
+              onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search..."
               className="bg-alternate text-primary rounded-l focus:outline-none p-2"
             />
-            <button className="bg-primary text-white rounded-r py-2 px-4">
+            <button
+              onClick={submitSearch}
+              className="bg-primary text-white rounded-r py-2 px-4"
+            >
               <FontAwesomeIcon icon={faSearch} />
             </button>
           </div>

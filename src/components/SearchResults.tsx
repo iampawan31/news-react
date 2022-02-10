@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
-import { useNavigate } from 'react-router-dom'
-import { fetchByTopic } from '../API/news'
-import { LINKS } from '../data/links'
+import { useLocation } from 'react-router-dom'
+import { fetchBySearchTerm } from '../API/news'
+
 import NewsArticle from './NewsArticle'
 import PageHeader from './PageHeader'
 
@@ -12,31 +11,22 @@ type currentCountryType = {
   completeLoader: Function
 }
 
-const Topic = ({
+const SearchResults = ({
   currentTime,
   startLoader,
   completeLoader,
 }: currentCountryType) => {
   const [news, setNews] = useState([])
   const [icon, setIcon] = useState<any>(null)
-  let { topic } = useParams()
-  let navigate = useNavigate()
+  let location = useLocation()
+  let params = new URLSearchParams(location.search)
+  const queryTerm = params.get('q')
 
   useEffect(() => {
-    console.log(LINKS, 26)
-
-    const foundValidLink = LINKS.some((link) => link.url === `/topic/${topic}`)
-
-    if (!foundValidLink) {
-      navigate('/')
-    }
-
     const getNewsByTopic = async () => {
       startLoader()
-      setIcon(
-        LINKS && LINKS.find((link) => link?.name?.toLowerCase() === topic)?.icon
-      )
-      const data = await fetchByTopic(topic)
+      setIcon('search')
+      const data = await fetchBySearchTerm(queryTerm)
       if (data) {
         setNews(data)
         completeLoader()
@@ -44,12 +34,12 @@ const Topic = ({
     }
 
     getNewsByTopic()
-  }, [topic])
+  }, [queryTerm])
 
   return (
     <div>
       <PageHeader
-        title={topic?.toLocaleUpperCase()}
+        title={`Results for ${queryTerm}`}
         currentTime={currentTime}
         icon={icon}
       />
@@ -60,4 +50,4 @@ const Topic = ({
   )
 }
 
-export default Topic
+export default SearchResults
