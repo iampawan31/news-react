@@ -1,18 +1,7 @@
-type NewsArticleProps = {
-  news: {
-    title: string
-    media: string
-    excerpt: string
-    source: {
-      name: string
-    }
-    author: string
-    published_date: string
-    link: string
-  }
-}
+import { FC, ReactElement } from 'react'
+import { NewsArticlePropsTypes } from '../types'
 
-const NewsArticle = ({ news }: NewsArticleProps) => {
+const NewsArticle: FC<NewsArticlePropsTypes> = ({ news }): ReactElement => {
   return (
     <div className="bg-white max-w-md rounded-md shadow-lg overflow-hidden">
       <img

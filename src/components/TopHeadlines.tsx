@@ -1,21 +1,15 @@
-import { useEffect, useState } from 'react'
+import { FC, ReactElement, useEffect, useState } from 'react'
 import { fetchTopHeadlines } from '../API/news'
-import NewsArticle from './NewsArticle'
+import NewsArticles from './NewsArticles'
 import PageHeader from './PageHeader'
+import { TopHeadlinesPropTypes } from '../types'
 
-type currentCountryType = {
-  currentTime: string
-  currentCountry: string
-  startLoader: Function
-  completeLoader: Function
-}
-
-const TopHeadlines = ({
+const TopHeadlines: FC<TopHeadlinesPropTypes> = ({
   currentTime,
   currentCountry,
   startLoader,
   completeLoader,
-}: currentCountryType) => {
+}): ReactElement => {
   const [topHeadlines, setTopHeadlines] = useState([])
 
   useEffect(() => {
@@ -37,12 +31,7 @@ const TopHeadlines = ({
         currentTime={currentTime}
         icon="shield-virus"
       />
-      <div className="grid grid-flow-row grid-cols-1 sm:grid-cols-3 gap-y-6 gap-x-6 px-2 sm:px-0">
-        {topHeadlines &&
-          topHeadlines.map((headline, index) => (
-            <NewsArticle key={index} news={headline} />
-          ))}
-      </div>
+      <NewsArticles articles={topHeadlines} />
     </div>
   )
 }

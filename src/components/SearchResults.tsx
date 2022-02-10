@@ -1,21 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { fetchBySearchTerm } from '../API/news'
-
+import { SearchResultsPropTypes } from '../types'
 import NewsArticle from './NewsArticle'
 import PageHeader from './PageHeader'
-
-type currentCountryType = {
-  currentTime: string
-  startLoader: Function
-  completeLoader: Function
-}
 
 const SearchResults = ({
   currentTime,
   startLoader,
   completeLoader,
-}: currentCountryType) => {
+}: SearchResultsPropTypes) => {
   const [news, setNews] = useState([])
   const [icon, setIcon] = useState<any>(null)
   let location = useLocation()

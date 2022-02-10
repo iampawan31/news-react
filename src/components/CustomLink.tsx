@@ -3,15 +3,9 @@ import { Link, useMatch, useResolvedPath } from 'react-router-dom'
 import type { LinkProps } from 'react-router-dom'
 import { IconName } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { CustomLinkPropsTypes } from '../types'
 
-type CustomLinkProps = {
-  link: {
-    icon: string
-    name: string
-  }
-}
-
-const CustomLink: FC<CustomLinkProps & LinkProps> = ({
+const CustomLink: FC<CustomLinkPropsTypes & LinkProps> = ({
   link,
   children,
   to,

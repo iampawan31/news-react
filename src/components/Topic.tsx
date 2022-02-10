@@ -3,20 +3,15 @@ import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
 import { fetchByTopic } from '../API/news'
 import { LINKS } from '../data/links'
+import { TopicPropsTypes } from '../types'
 import NewsArticle from './NewsArticle'
 import PageHeader from './PageHeader'
-
-type currentCountryType = {
-  currentTime: string
-  startLoader: Function
-  completeLoader: Function
-}
 
 const Topic = ({
   currentTime,
   startLoader,
   completeLoader,
-}: currentCountryType) => {
+}: TopicPropsTypes) => {
   const [news, setNews] = useState([])
   const [icon, setIcon] = useState<any>(null)
   let { topic } = useParams()
